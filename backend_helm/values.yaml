@@ -14,5 +14,5 @@ service:
   type: ClusterIP
 issuer: 
   email: tventura@hermesv.io
-domain: kuber.master-vm.shop
+domain: backend.master-vm.shop
 name: "backend-terraform"
