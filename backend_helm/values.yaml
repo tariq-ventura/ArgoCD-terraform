@@ -1,0 +1,18 @@
+deployment:
+  image: "us-central1-docker.pkg.dev/molten-unison-401314/terraform-images/backend-terraform"
+  tag: "latest"
+  container_port: 80
+configMap:
+  DB_USER: root
+  DB_PASSWORD: 12345678
+  DB_NAME: terraform-db-backend
+  DB_PATH: 10.211.0.3
+  PORT: 80
+service:
+  service_port: 80
+  target_port: 80
+  type: ClusterIP
+issuer: 
+  email: tventura@hermesv.io
+domain: kuber.master-vm.shop
+name: "backend-terraform"
