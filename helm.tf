@@ -6,6 +6,17 @@ provider "helm" {
   }
 }
 
+resource "helm_release" "argocd" {
+  name       = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
+  chart      = "argo-cd"
+  namespace  = "argocd"
+
+  depends_on = [
+    google_container_cluster.primary
+  ]
+}
+
 resource "helm_release" "ingress_nginx" {
   name       = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
@@ -31,14 +42,12 @@ resource "helm_release" "cert_manager" {
   ]
 }
 
-resource "helm_release" "argocd" {
-  name       = "argocd"
-  repository = "https://argoproj.github.io/argo-helm"
-  chart      = "argo-cd"
-  namespace  = "argocd"
+resource "helm_release" "backend_app" {
+  name      = "backend-app"
+  chart     = "./backend_helm"
+  namespace = "argocd"
 
   depends_on = [
     google_container_cluster.primary
   ]
 }
-

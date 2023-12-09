@@ -1,2 +1,4 @@
 variables.tf
 gcp-key.json
+terraform.tfstate
+terraform.tfstate.backup
