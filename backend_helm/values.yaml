@@ -15,4 +15,4 @@ service:
 issuer: 
   email: tventura@hermesv.io
 domain: backend.master-vm.shop
-name: "backend-terraform-v2"
+name: "backend-terraform"
