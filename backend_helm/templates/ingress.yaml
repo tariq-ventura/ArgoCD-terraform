@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: "{{ .Values.name }}"
   annotations:
-    cert-manager.io/cluster-issuer: "{{ .Values.issuer.name }}"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
@@ -26,4 +26,4 @@ spec:
   tls:
     - hosts:
       -   {{ .Values.domain }}
-      secretName: "{{ .Values.certificate.name }}"
+      secretName: letsencrypt-prod

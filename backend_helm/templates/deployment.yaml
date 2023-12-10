@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Values.deployment.name }}"
+  name: "{{ .Values.name }}"
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: 1
   selector:
     matchLabels:
-      app: "{{ .Values.deployment.name }}"
+      app: "{{ .Values.name }}"
   template:
     metadata:
       labels:
-        app: "{{ .Values.deployment.name }}"
+        app: "{{ .Values.name }}"
     spec:
       containers:
       - name: terraform-backend-container
@@ -19,4 +19,4 @@ spec:
         - containerPort: {{ .Values.deployment.container_port }}
         envFrom:
         - configMapRef:
-            name: "{{ .Values.configMap.name }}"
+            name: "{{ .Values.name }}"
