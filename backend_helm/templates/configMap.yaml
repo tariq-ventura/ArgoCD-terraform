@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Values.name }}-v2"
+  name: "{{ .Values.configMap.name }}-v2"
 data:
   DB_USER: "{{ .Values.configMap.DB_USER }}"
   DB_PASSWORD: "{{ .Values.configMap.DB_PASSWORD }}"

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: "{{ .Values.name }}"
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: {{ .Values.issuer.name }}
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
@@ -15,15 +15,15 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: "{{ .Values.name }}"
+            name: "{{ .Values.service.name }}"
             port:
               number: 80
   defaultBackend:
     service:
-      name: "{{ .Values.name }}"
+      name:  "{{ .Values.service.name }}"
       port:
         number: 80
   tls:
     - hosts:
       -   {{ .Values.domain }}
-      secretName: letsencrypt-prod
+      secretName:  "{{ .Values.certificate.name }}"

@@ -41,13 +41,3 @@ resource "helm_release" "cert_manager" {
     google_container_cluster.primary
   ]
 }
-
-resource "helm_release" "backend_app" {
-  name      = "backend-app"
-  chart     = "./backend_helm"
-  namespace = "argocd"
-
-  depends_on = [
-    google_container_cluster.primary
-  ]
-}

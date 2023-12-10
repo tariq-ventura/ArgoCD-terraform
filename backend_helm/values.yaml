@@ -1,18 +1,28 @@
 deployment:
+  name: "backend-deployment-v1"
   image: "us-central1-docker.pkg.dev/molten-unison-401314/terraform-images/backend-terraform"
   tag: "latest"
   container_port: 80
+  replicas: 1
 configMap:
+  name: "backend-config-v1"
   DB_USER: root
   DB_PASSWORD: 123456
   DB_NAME: terraform-db-backend
   DB_PATH: 10.191.0.3
   PORT: 80
 service:
+  name: "backend-service-v1"
   service_port: 80
   target_port: 80
   type: ClusterIP
 issuer: 
+  name: "backend-issuer-v1"
   email: tventura@hermesv.io
+ingress:
+  name: "backend-ingress-v1"
+certificate:
+  name: "backend-certificate-v1"
+  secretName : secure-master-vm-shop-tls
+  organizations: master-vm-shop
 domain: master-vm.shop
-name: "backend-terraform"
