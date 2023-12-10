@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Values.name }}v1"
 data:
   DB_USER: {{ .Values.configMap.DB_USER }}
-  DB_PASSWORD: {{ .Values.configMap.DB_PASSWORD }}
+  DB_PASSWORD: "{{ .Values.configMap.DB_PASSWORD }}"
   DB_NAME: {{ .Values.configMap.DB_NAME }}
   DB_PATH: "{{ .Values.configMap.DB_PATH }}"
   PORT: "{{ .Values.configMap.PORT }}"
